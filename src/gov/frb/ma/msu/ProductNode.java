@@ -110,13 +110,13 @@ public class ProductNode extends Node
       System.exit(1);
     }
     vTerm = (VariableNode) term;
-    if ((vTerm.Period <= 0) && (vTerm.ELag == Aim.No)) {
+    if ((vTerm.Period <= 0) && (vTerm.ELag == AMA.No)) {
       index = ((vTerm.Period + m.NLag) * m.NEq +
 	       m.FindVariableIndex(vTerm.Name))
 	* m.NEq + eqno;
       indexPlus1 = index + 1;
       pout.print("  g(" + indexPlus1 + ") = g(" + indexPlus1 + ")");
-      if (side == Aim.Right_Side)
+      if (side == AMA.Right_Side)
 	pout.print(" - ");
       else
 	pout.print(" + ");
@@ -140,13 +140,13 @@ public class ProductNode extends Node
       System.exit(1);
     }
     vTerm = (VariableNode) term;
-    if ((vTerm.Period > 0) || (vTerm.ELag == Aim.Yes)) {
+    if ((vTerm.Period > 0) || (vTerm.ELag == AMA.Yes)) {
       index = ((vTerm.Period + m.NLag) * m.NEq +
 	       m.FindVariableIndex(vTerm.Name))
 	* m.NEq + eqno;
       indexPlus1 = index + 1;
       pout.print("  h(" + indexPlus1 + ") = h(" + indexPlus1 + ")");
-      if (side == Aim.Right_Side)
+      if (side == AMA.Right_Side)
 	pout.print(" - ");
       else
 	pout.print(" + ");

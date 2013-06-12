@@ -10,9 +10,9 @@ public class Model
   int NLag;        // maximum lag in model
   int NLead;       // maximum lead in model
 
-  Equation[] Equations = new Equation[Aim.Max_Array_Size];   // array of Equations
-  String[] Coefficients = new String[Aim.Max_Array_Size];    // coefficient names
-  Variable[] Variables = new Variable[Aim.Max_Array_Size];  // Variable objects
+  Equation[] Equations = new Equation[AMA.Max_Array_Size];   // array of Equations
+  String[] Coefficients = new String[AMA.Max_Array_Size];    // coefficient names
+  Variable[] Variables = new Variable[AMA.Max_Array_Size];  // Variable objects
 
   int NVars;       // number of variables
   int NCoeffs;     // number of coefficients
@@ -139,17 +139,17 @@ public class Model
     PrintStream matrixPS;
     String lcName = Name;
     lcName.toLowerCase();
-    String dataFileName = lcName + "_aim_data.m";
-    String matrixFileName = lcName + "_aim_matrices.m";
+    String dataFileName = lcName + "_AMA_data.m";
+    String matrixFileName = lcName + "_AMA_matrices.m";
     
     try {
 	dataPS = new PrintStream(new FileOutputStream(dataFileName));
 
 	dataPS.println("function [param_,np,modname,neq,nlag,nlead,eqname_,eqtype_,endog_,delay_,vtype_] = ...");
-	dataPS.println("     " + lcName + "_aim_data()");
+	dataPS.println("     " + lcName + "_AMA_data()");
 	dataPS.println();
-	dataPS.println("% " + lcName + "_aim_data()");
-	dataPS.println("%     This function will return various information about the AIM model,");
+	dataPS.println("% " + lcName + "_AMA_data()");
+	dataPS.println("%     This function will return various information about the AMA model,");
 	dataPS.println("%     but will not compute the G and H matrices.");
 	dataPS.println();
 	dataPS.println("  eqname = cell(" + NEq + ", 1);");
@@ -223,7 +223,7 @@ public class Model
     }
 
 /*****************************************************************
-  Now print out the function compute_aim_matrices(). This function
+  Now print out the function compute_AMA_matrices(). This function
   will compute the G and H matrices.  Actually this is a script not
   a function.  It is easier to deal with the parameters in Matlab if
   this part is a script since you don't have to declare them globals
@@ -233,7 +233,7 @@ public class Model
     try {
       matrixPS = new PrintStream(new FileOutputStream(matrixFileName));
             
-      matrixPS.println("% " + lcName + "_aim_matrices()");
+      matrixPS.println("% " + lcName + "_AMA_matrices()");
       matrixPS.println("%     This script will compute the G and H matrices.");
       matrixPS.println();
 
@@ -244,13 +244,13 @@ public class Model
       matrixPS.println();
 
       for (i = 0; i < NEq; i++) {
-	Equations[i].LHS.PrintGMatrixEntries(this, i, Aim.Left_Side,
+	Equations[i].LHS.PrintGMatrixEntries(this, i, AMA.Left_Side,
 					     matrixPS);
-	Equations[i].RHS.PrintGMatrixEntries(this, i, Aim.Right_Side,
+	Equations[i].RHS.PrintGMatrixEntries(this, i, AMA.Right_Side,
 					     matrixPS);
-	Equations[i].LHS.PrintHMatrixEntries(this, i, Aim.Left_Side,
+	Equations[i].LHS.PrintHMatrixEntries(this, i, AMA.Left_Side,
 					     matrixPS);
-	Equations[i].RHS.PrintHMatrixEntries(this, i, Aim.Right_Side,
+	Equations[i].RHS.PrintHMatrixEntries(this, i, AMA.Right_Side,
 					     matrixPS);
       }
 

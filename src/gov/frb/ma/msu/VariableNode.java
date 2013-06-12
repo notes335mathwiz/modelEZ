@@ -7,7 +7,7 @@ public class VariableNode extends Node
 {
   String Name;
   int Period;
-  int ELag;   // this can only be Aim.Yes or Aim.No. is there a good way
+  int ELag;   // this can only be AMA.Yes or AMA.No. is there a good way
   // to enforce this?
   
   public VariableNode(String s, int p, int e) {
@@ -37,13 +37,13 @@ public class VariableNode extends Node
 				  PrintStream pout) {
     int index;
     int indexPlus1;
-    if ((Period <= 0) && (ELag == Aim.No)) {
+    if ((Period <= 0) && (ELag == AMA.No)) {
       index = ((Period + m.NLag) * m.NEq +
 	       m.FindVariableIndex(Name))
 	* m.NEq + eqno;
       indexPlus1 = index + 1;
       pout.print("  g(" + indexPlus1 + ") = g(" + indexPlus1 + ")");
-      if (side == Aim.Left_Side)
+      if (side == AMA.Left_Side)
 	pout.print(" + 1;\n");
       else
 	pout.print(" - 1;\n");
@@ -54,12 +54,12 @@ public class VariableNode extends Node
 				  PrintStream pout) {
     int index;
     int indexPlus1;
-    if ((Period > 0 ) || (ELag == Aim.Yes)) {
+    if ((Period > 0 ) || (ELag == AMA.Yes)) {
       index = ((Period + m.NLag) * m.NEq + m.FindVariableIndex(Name))
 	* m.NEq + eqno;
       indexPlus1 = index + 1;
       pout.print("  h(" + indexPlus1 + ") = h(" + indexPlus1 + ")");
-      if (side == Aim.Left_Side)
+      if (side == AMA.Left_Side)
 	pout.print(" + 1;\n");
       else
 	pout.print(" - 1;\n");
@@ -67,7 +67,7 @@ public class VariableNode extends Node
   }
 
   public void PrintSubtree() {
-    if (ELag == Aim.Yes)
+    if (ELag == AMA.Yes)
       System.out.print("ELAG(" + Name + "," + (-1 * Period) + ")");
     else if (Period > 0)
       System.out.print(Name + "(" + Period + ")");
