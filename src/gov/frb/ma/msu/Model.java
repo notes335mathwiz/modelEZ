@@ -3,7 +3,7 @@ package gov.frb.ma.msu;
 import java.io.*;
 
 
-public class Model
+public class Model 
 {
   String Name;  // name of model
   int NEq;         // number of equations

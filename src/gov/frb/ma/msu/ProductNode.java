@@ -2,7 +2,7 @@ package gov.frb.ma.msu;
 
 import java.io.*;
 
-public class ProductNode extends Node
+public class ProductNode extends Node 
 {
     Node Multiplicand1;
     Node Multiplicand2;

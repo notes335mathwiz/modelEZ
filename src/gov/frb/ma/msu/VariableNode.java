@@ -3,7 +3,7 @@ package gov.frb.ma.msu;
 import java.io.*;
 
 
-public class VariableNode extends Node
+public class VariableNode extends Node 
 {
   String Name;
   int Period;
